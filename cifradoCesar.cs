@@ -1,5 +1,5 @@
 //--------------------------------------------------------
-//TP ADAPTACIÓN AL AMBIENTE DE TRABAJO "CÓDIGO CÉSAR"
+//TP ADAPTACIÓN AL AMBIENTE DE TRABAJO "CÓDIGO CÉSAR (Apartado 4 - Distancia)"
 //INTEGRANTES: WALLACE MITCHELL - JUAN IGNACIO VARISCO.
 //--------------------------------------------------------
 
@@ -8,8 +8,9 @@ using System;
 class Program
 {
 
-    //declaramos el alfabeto arbitrario.
-
+    //declaramos el alfabeto arbitrario y las distancias.
+    private static int distancia1;
+    private static int distancia2;
     private static string alfabeto = "abcdefghijklmñnopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890_-+,#$%&/()=¿?¡!|,.;:{}[]";
 
     public static void Main()
@@ -18,6 +19,8 @@ class Program
         Console.WriteLine("Ingrese la frase a cifrar");
 
         string fraseCif = Console.ReadLine(); //guardamos la frase a cifrar ingresada por consola.
+        Console.WriteLine("Ingrese la distancia destinada a cifrar");
+        distancia1 = Convert.ToInt32(Console.ReadLine()); //ingresamos el valor de la distancia deseada.
 
         while (string.IsNullOrEmpty(fraseCif))
         {
@@ -28,6 +31,9 @@ class Program
         Console.WriteLine("Ingrese la frase a descrifrar");
 
         string fraseDescif = Console.ReadLine(); //guardamos la frase a descifrar ingresada por consola.
+
+        Console.WriteLine("Ingrese la distancia destinada a descifrar");
+        distancia2 = Convert.ToInt32(Console.ReadLine()); //ingrasamos el valor de la distancia deseada.
 
         while (string.IsNullOrEmpty(fraseDescif))
         {
@@ -40,7 +46,7 @@ class Program
         Console.WriteLine("Mensaje cifrado: ");
 
         Console.WriteLine(program.Cifrado(fraseCif));
-                                                      //mostramos resultados de la aplicación de las funciones.
+        //mostramos resultados de la aplicación de las funciones.
         Console.WriteLine("Mensaje descrifrado: ");
 
         Console.WriteLine(program.Descifrado(fraseDescif));
@@ -71,7 +77,7 @@ class Program
 
             }
 
-            index = (index + 7) % alfabeto.Length; //si se pasa del rango, vuelve al principio.
+            index = (index + distancia1) % alfabeto.Length;
 
             stringAux += alfabeto[index];
 
@@ -106,7 +112,7 @@ class Program
 
             }
 
-            index = (index - 7) + alfabeto.Length * BoolToInt(index - 7 < 0);
+            index = (index - distancia2) + alfabeto.Length * BoolToInt(index - distancia2 < 0);
 
             stringAux += alfabeto[index];
 
